@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curriculum as Experience | पाठ्यक्रम अनुभवको रूपमा</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .presentation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .slide {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 20px 0;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideIn 0.8s ease-out forwards;
+        }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide:nth-child(1) { animation-delay: 0.2s; }
+        .slide:nth-child(2) { animation-delay: 0.4s; }
+        .slide:nth-child(3) { animation-delay: 0.6s; }
+        .slide:nth-child(4) { animation-delay: 0.8s; }
+        .slide:nth-child(5) { animation-delay: 1.0s; }
+        .slide:nth-child(6) { animation-delay: 1.2s; }
+        .slide:nth-child(7) { animation-delay: 1.4s; }
+
+        .title-slide {
+            text-align: center;
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            color: white;
+        }
+
+        .title-slide h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .title-slide .nepali-title {
+            font-size: 2.2em;
+            margin-bottom: 30px;
+            font-family: 'Noto Sans Devanagari', sans-serif;
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            opacity: 0.9;
+        }
+
+        .bilingual-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .english-section, .nepali-section {
+            padding: 20px;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .english-section {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+        }
+
+        .nepali-section {
+            background: linear-gradient(135deg, #fd79a8, #e84393);
+            color: white;
+            font-family: 'Noto Sans Devanagari', sans-serif;
+        }
+
+        .english-section:hover, .nepali-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #2d3436;
+        }
+
+        .bilingual-content h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .experience-card {
+            background: linear-gradient(135deg, #a29bfe, #6c5ce7);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .experience-card:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .experience-card h4 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        .principles-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .principles-list li {
+            background: rgba(116, 185, 255, 0.1);
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #74b9ff;
+            transition: all 0.3s ease;
+        }
+
+        .principles-list li:hover {
+            background: rgba(116, 185, 255, 0.2);
+            transform: translateX(10px);
+        }
+
+        .implementation-steps {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-around;
+            margin-top: 25px;
+        }
+
+        .step {
+            background: linear-gradient(135deg, #00cec9, #00b894);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            min-width: 200px;
+            flex: 1;
+            transition: all 0.3s ease;
+        }
+
+        .step:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .step-number {
+            background: rgba(255, 255, 255, 0.2);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .language-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #ff7675, #fd79a8);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .language-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 5px solid #e17055;
+        }
+
+        @media (max-width: 768px) {
+            .bilingual-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .title-slide h1 {
+                font-size: 2em;
+            }
+            
+            .title-slide .nepali-title {
+                font-size: 1.5em;
+            }
+            
+            .implementation-steps {
+                flex-direction: column;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 2s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <button class="language-toggle" onclick="toggleLanguage()">🌐 Switch Language</button>
+    
+    <div class="presentation-container">
+        <!-- Title Slide -->
+        <div class="slide title-slide">
+            <h1 class="fade-in">Curriculum as Experience</h1>
+            <div class="nepali-title fade-in">पाठ्यक्रम अनुभवको रूपमा</div>
+            <p class="subtitle">Transforming Education Through Experiential Learning</p>
+            <p class="subtitle" style="font-family: 'Noto Sans Devanagari', sans-serif;">अनुभवजन्य शिक्षाद्वारा शिक्षाको रूपान्तरण</p>
+        </div>
+
+        <!-- Concept Overview -->
+        <div class="slide">
+            <h2>What is Experiential Curriculum?</h2>
+            <div class="bilingual-content">
+                <div class="english-section">
+                    <h3>🎯 Core Concept</h3>
+                    <p>Experiential curriculum transforms traditional learning by making students active participants in their education. It emphasizes learning through direct experience, reflection, and practical application rather than passive consumption of information.</p>
+                    <ul style="margin-top: 15px; line-height: 1.8;">
+                        <li>• Learning by doing</li>
+                        <li>• Real-world connections</li>
+                        <li>• Student-centered approach</li>
+                        <li>• Collaborative learning</li>
+                    </ul>
+                </div>
+                <div class="nepali-section">
+                    <h3>🎯 मूल अवधारणा</h3>
+                    <p>अनुभवजन्य पाठ्यक्रमले विद्यार्थीहरूलाई उनीहरूको शिक्षामा सक्रिय सहभागी बनाएर परम्परागत शिक्षालाई रूपान्तरण गर्छ। यसले सूचनाको निष्क्रिय उपभोगको सट्टा प्रत्यक्ष अनुभव, चिन्तन र व्यावहारिक प्रयोगमार्फत सिक्नेमा जोड दिन्छ।</p>
+                    <ul style="margin-top: 15px; line-height: 1.8;">
+                        <li>• गरेर सिक्ने</li>
+                        <li>• वास्तविक संसारसँग जडान</li>
+                        <li>• विद्यार्थी केन्द्रित दृष्टिकोण</li>
+                        <li>• सहयोगमूलक शिक्षा</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Principles -->
+        <div class="slide">
+            <h2>Fundamental Principles</h2>
+            <div class="bilingual-content">
+                <div class="english-section">
+                    <h3>📚 Learning Principles</h3>
+                    <ul class="principles-list">
+                        <li><strong>Active Engagement:</strong> Students participate directly in learning activities</li>
+                        <li><strong>Reflection:</strong> Critical thinking about experiences and outcomes</li>
+                        <li><strong>Application:</strong> Using knowledge in real-world contexts</li>
+                        <li><strong>Integration:</strong> Connecting different subjects and skills</li>
+                        <li><strong>Assessment:</strong> Continuous evaluation through performance</li>
+                    </ul>
+                </div>
+                <div class="nepali-section">
+                    <h3>📚 शिक्षाका सिद्धान्तहरू</h3>
+                    <ul class="principles-list">
+                        <li><strong>सक्रिय सहभागिता:</strong> विद्यार्थीहरू सिकाइ गतिविधिहरूमा प्रत्यक्ष सहभागी हुन्छन्</li>
+                        <li><strong>चिन्तन:</strong> अनुभव र परिणामहरूबारे आलोचनात्मक सोच</li>
+                        <li><strong>प्रयोग:</strong> वास्तविक सन्दर्भमा ज्ञानको प्रयोग</li>
+                        <li><strong>एकीकरण:</strong> विभिन्न विषयहरू र सीपहरूलाई जोड्ने</li>
+                        <li><strong>मूल्याङ्कन:</strong> कार्यसम्पादनमार्फत निरन्तर मूल्याङ्कन</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Experience Types -->
+        <div class="slide">
+            <h2>Types of Experiential Learning</h2>
+            <div class="experience-grid">
+                <div class="experience-card">
+                    <h4>🔬 Laboratory Learning</h4>
+                    <p>Hands-on experiments and scientific discovery</p>
+                    <p style="font-family: 'Noto Sans Devanagari', sans-serif; margin-top: 10px;">प्रयोगशाला सिकाइ र वैज्ञानिक खोज</p>
+                </div>
+                <div class="experience-card">
+                    <h4>🌍 Field Studies</h4>
+                    <p>Learning in natural and community environments</p>
+                    <p style="font-family: 'Noto Sans Devanagari', sans-serif; margin-top: 10px;">प्राकृतिक र सामुदायिक वातावरणमा सिकाइ</p>
+                </div>
+                <div class="experience-card">
+                    <h4>🎭 Role Playing</h4>
+                    <p>Simulation and character-based learning</p>
+                    <p style="font-family: 'Noto Sans Devanagari', sans-serif; margin-top: 10px;">अनुकरण र चरित्र आधारित सिकाइ</p>
+                </div>
+                <div class="experience-card">
+                    <h4>💼 Project Work</h4>
+                    <p>Real-world problem solving through projects</p>
+                    <p style="font-family: 'Noto Sans Devanagari', sans-serif; margin-top: 10px;">परियोजनामार्फत वास्तविक समस्या समाधान</p>
+                </div>
+                <div class="experience-card">
+                    <h4>🤝 Community Service</h4>
+                    <p>Learning through social engagement and service</p>
+                    <p style="font-family: 'Noto Sans Devanagari', sans-serif; margin-top: 10px;">सामाजिक सहभागिता र सेवामार्फत सिकाइ</p>
+                </div>
+                <div class="experience-card">
+                    <h4>💻 Digital Learning</h4>
+                    <p>Technology-enhanced interactive experiences</p>
+                    <p style="font-family: 'Noto Sans Devanagari', sans-serif; margin-top: 10px;">प्रविधि संवर्धित अन्तरक्रियात्मक अनुभवहरू</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Implementation Strategy -->
+        <div class="slide">
+            <h2>Implementation Strategy</h2>
+            <div class="implementation-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>Assessment</h4>
+                    <p>Evaluate current curriculum and identify experience gaps</p>
+                    <p style="font-family: 'Noto Sans Devanagari', sans-serif; margin-top: 10px; font-size: 0.9em;">हालको पाठ्यक्रम मूल्याङ्कन र अनुभवको कमी पहिचान</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>Design</h4>
+                    <p>Create experiential learning modules for each subject</p>
+                    <p style="font-family: 'Noto Sans Devanagari', sans-serif; margin-top: 10px; font-size: 0.9em;">प्रत्येक विषयका लागि अनुभवजन्य शिक्षा मोड्युल सिर्जना</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>Training</h4>
+                    <p>Prepare teachers for experiential teaching methods</p>
+                    <p style="font-family: 'Noto Sans Devanagari', sans-serif; margin-top: 10px; font-size: 0.9em;">शिक्षकहरूलाई अनुभवजन्य शिक्षण विधिका लागि तयार पार्ने</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h4>Implementation</h4>
+                    <p>Pilot programs and gradual rollout</p>
+                    <p style="font-family: 'Noto Sans Devanagari', sans-serif; margin-top: 10px; font-size: 0.9em;">पायलट कार्यक्रम र क्रमिक विस्तार</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h4>Evaluation</h4>
+                    <p>Continuous monitoring and improvement</p>
+                    <p style="font-family: 'Noto Sans Devanagari', sans-serif; margin-top: 10px; font-size: 0.9em;">निरन्तर अनुगमन र सुधार</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Benefits -->
+        <div class="slide">
+            <h2>Benefits & Outcomes</h2>
+            <div class="bilingual-content">
+                <div class="english-section">
+                    <h3>🎓 Student Benefits</h3>
+                    <p><strong>Enhanced Learning:</strong> Better retention and understanding through direct experience</p>
+                    <p><strong>Skill Development:</strong> Critical thinking, problem-solving, and collaboration skills</p>
+                    <p><strong>Motivation:</strong> Increased engagement and interest in learning</p>
+                    <p><strong>Real-world Preparation:</strong> Better preparation for future careers and life challenges</p>
+                </div>
+                <div class="nepali-section">
+                    <h3>🎓 विद्यार्थीका फाइदाहरू</h3>
+                    <p><strong>सुधारिएको सिकाइ:</strong> प्रत्यक्ष अनुभवमार्फत राम्रो स्मरण र बुझाइ</p>
+                    <p><strong>सीप विकास:</strong> आलोचनात्मक सोच, समस्या समाधान र सहयोगको सीप</p>
+                    <p><strong>प्रेरणा:</strong> सिकाइमा बढेको सहभागिता र रुचि</p>
+                    <p><strong>वास्तविक संसारको तयारी:</strong> भविष्यका करियर र जीवनका चुनौतीहरूका लागि राम्रो तयारी</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Conclusion -->
+        <div class="slide">
+            <div class="highlight">
+                <h2 style="text-align: center; margin-bottom: 20px;">Transforming Education Together</h2>
+                <div class="bilingual-content">
+                    <div class="english-section">
+                        <h3>🚀 Moving Forward</h3>
+                        <p>Experiential curriculum represents a paradigm shift from traditional education to engaged, meaningful learning. By implementing these strategies, we create an educational environment where students don't just learn about the world—they experience it, understand it, and develop the skills to change it.</p>
+                        <p style="margin-top: 15px;"><em>"Tell me and I forget, teach me and I may remember, involve me and I learn."</em> - Benjamin Franklin</p>
+                    </div>
+                    <div class="nepali-section">
+                        <h3>🚀 अगाडि बढ्दै</h3>
+                        <p>अनुभवजन्य पाठ्यक्रमले परम्परागत शिक्षाबाट संलग्न, अर्थपूर्ण शिक्षामा प्रतिमान परिवर्तनको प्रतिनिधित्व गर्छ। यी रणनीतिहरू लागू गरेर, हामी एउटा शैक्षिक वातावरण सिर्जना गर्छौं जहाँ विद्यार्थीहरूले संसारको बारेमा मात्र सिक्दैनन्—तिनीहरूले यसलाई अनुभव गर्छन्, बुझ्छन्, र यसलाई परिवर्तन गर्ने सीपहरू विकास गर्छन्।</p>
+                        <p style="margin-top: 15px;"><em>"मलाई भन्नुहोस् र म बिर्सन्छु, मलाई सिकाउनुहोस् र म सम्झन सक्छु, मलाई सामेल गराउनुहोस् र म सिक्छु।"</em> - बेन्जामिन फ्रान्कलिन</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add smooth scrolling
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.slide');
+            
+            function revealSlides() {
+                slides.forEach((slide, index) => {
+                    const slideTop = slide.getBoundingClientRect().top;
+                    const slideVisible = 150;
+                    
+                    if (slideTop < window.innerHeight - slideVisible) {
+                        slide.style.animation = `slideIn 0.8s ease-out ${index * 0.2}s forwards`;
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', revealSlides);
+            revealSlides(); // Initial call
+        });
+
+        // Language toggle functionality (placeholder)
+        function toggleLanguage() {
+            alert('Language toggle feature - In a full implementation, this would switch between English and Nepali primary text display.');
+        }
+
+        // Add hover effects for interactive elements
+        document.querySelectorAll('.experience-card, .step').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = this.classList.contains('step') ? 'translateY(-10px)' : 'scale(1.05) rotate(2deg)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = this.classList.contains('step') ? 'translateY(0)' : 'scale(1) rotate(0deg)';
+            });
+        });
+    </script>
+</body>
+</html>
